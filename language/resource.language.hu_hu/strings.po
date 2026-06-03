@@ -645,3 +645,20 @@ msgstr "Bekapcsolás"
 msgctxt "#32026"
 msgid "Master user"
 msgstr "Master user"
+
+#. ============ 2026 remake — skin beállítások ============
+msgctxt "#32030"
+msgid "2026 Appearance"
+msgstr "Megjelenés 2026"
+
+msgctxt "#32031"
+msgid "Motion background (Ken Burns)"
+msgstr "Mozgó háttér (Ken Burns)"
+
+msgctxt "#32032"
+msgid "Glass blur"
+msgstr "Üveg elmosás"
+
+msgctxt "#32033"
+msgid "High contrast"
+msgstr "Erős kontraszt"

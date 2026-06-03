@@ -1292,3 +1292,20 @@ msgstr ""
 msgctxt "#32026"
 msgid "Master user"
 msgstr ""
+
+#. ============ 2026 remake — skin settings ============
+msgctxt "#32030"
+msgid "2026 Appearance"
+msgstr ""
+
+msgctxt "#32031"
+msgid "Motion background (Ken Burns)"
+msgstr ""
+
+msgctxt "#32032"
+msgid "Glass blur"
+msgstr ""
+
+msgctxt "#32033"
+msgid "High contrast"
+msgstr ""

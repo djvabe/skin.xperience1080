@@ -138,6 +138,10 @@
                             <description>Add-on Settings</description>
                             <label>$LOCALIZE[31280]</label>
                         </item>
+                        <item id="39">
+                            <description>2026 Appearance</description>
+                            <label>$LOCALIZE[32030]</label>
+                        </item>
                     </content>
                 </control>
             </control>
@@ -175,6 +179,36 @@
                     <width>1710</width>
                     <height>150</height>
                     <texture>windows/home/item-shadow.png</texture>
+                </control>
+
+                <!-- ================ -->
+                <!-- 2026 Appearance  -->
+                <!-- ================ -->
+                <control type="grouplist" id="5">
+                    <visible>Container(30).HasFocus(39)</visible>
+                    <onleft>30</onleft>
+                    <include>SettingsCategoryGrouplistVars</include>
+                    <control type="radiobutton" id="3901">
+                        <width>1210</width>
+                        <include>SettingsCategoryRadioButtonVars</include>
+                        <selected>Skin.HasSetting(MotionFX)</selected>
+                        <onclick>Skin.ToggleSetting(MotionFX)</onclick>
+                        <label>$LOCALIZE[32031]</label>
+                    </control>
+                    <control type="radiobutton" id="3902">
+                        <width>1210</width>
+                        <include>SettingsCategoryRadioButtonVars</include>
+                        <selected>Skin.HasSetting(GlassBlur)</selected>
+                        <onclick>Skin.ToggleSetting(GlassBlur)</onclick>
+                        <label>$LOCALIZE[32032]</label>
+                    </control>
+                    <control type="radiobutton" id="3903">
+                        <width>1210</width>
+                        <include>SettingsCategoryRadioButtonVars</include>
+                        <selected>Skin.HasSetting(HighContrast)</selected>
+                        <onclick>Skin.ToggleSetting(HighContrast)</onclick>
+                        <label>$LOCALIZE[32033]</label>
+                    </control>
                 </control>
 
                 <!-- ================ -->
