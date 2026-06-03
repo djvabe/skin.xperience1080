@@ -91,6 +91,8 @@ Az erőforrás-igényes effektek alapból KI vannak kapcsolva, de ellenőrizd:
 - **Beállítások ▸ Felület ▸ Felületi téma ▸ Beállítások** (a skin saját beállításai).
 - A **„Mozgó háttér" (MotionFX)** legyen **KI** — ez kapcsolja a Ken Burns zoomot és a háttér-animációt. A 680MX-en így gördülékenyebb.
 - **Kiemelő szín** (accent): **Beállítások ▸ Felület ▸ Felületi téma ▸ Színek** alatt válthatsz kék / borostyán / smaragd / lila / korall között (ezek a `colors/` témafájlok).
+- **Szövegméret** (olvashatóság): **Beállítások ▸ Felület ▸ Felületi téma ▸ Betűtípusok (Fonts)** → **Default** (Normál) / **Large** (Nagy) / **Extra**. Csak az új 2026 képernyők törzs-/metaadat-/címke-szövegei nőnek; a régi képernyők fix méretűek maradnak, így **semmi nem esik szét**.
+- **Mozgó háttér / Üveg elmosás / Erős kontraszt:** a skin saját **Beállítások ▸ … ▸ Megjelenés 2026** kategóriájában.
 
 A betűk (Sora, Manrope) a skinbe csomagolva érkeznek (`fonts/`), nem kell rendszerszinten telepíteni — macOS és Windows alatt egyformán működik.
 
