@@ -1222,3 +1222,73 @@ msgstr ""
 msgctxt "#31996"
 msgid "Hide Date"
 msgstr ""
+
+#. ============ 2026 remake — main menu hubs ============
+msgctxt "#32001"
+msgid "Home"
+msgstr ""
+
+msgctxt "#32002"
+msgid "Movies"
+msgstr ""
+
+msgctxt "#32003"
+msgid "TV Shows"
+msgstr ""
+
+msgctxt "#32004"
+msgid "Live TV"
+msgstr ""
+
+msgctxt "#32005"
+msgid "Add-ons"
+msgstr ""
+
+msgctxt "#32006"
+msgid "Music"
+msgstr ""
+
+msgctxt "#32007"
+msgid "Pictures"
+msgstr ""
+
+msgctxt "#32008"
+msgid "Programs"
+msgstr ""
+
+msgctxt "#32009"
+msgid "Weather"
+msgstr ""
+
+msgctxt "#32010"
+msgid "Favourites"
+msgstr ""
+
+#. ============ 2026 remake — home UI ============
+msgctxt "#32020"
+msgid "Featured"
+msgstr ""
+
+msgctxt "#32021"
+msgid "Widget"
+msgstr ""
+
+msgctxt "#32022"
+msgid "Manage widgets"
+msgstr ""
+
+msgctxt "#32023"
+msgid "Edit menu"
+msgstr ""
+
+msgctxt "#32024"
+msgid "items"
+msgstr ""
+
+msgctxt "#32025"
+msgid "Power"
+msgstr ""
+
+msgctxt "#32026"
+msgid "Master user"
+msgstr ""

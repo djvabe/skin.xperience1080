@@ -7,6 +7,7 @@
     <include file="Includes_HomeWidgets.xml" />
     <include file="Includes_HomeCommons.xml" />
     <include file="Includes_Home.xml" />
+    <include file="Includes_Home2026.xml" />
     <include file="Includes_WindowContents.xml" />
     <include file="Includes_ViewHeader.xml" />
     <include file="Includes_Views.xml" />

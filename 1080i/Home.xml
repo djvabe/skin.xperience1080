@@ -1,23 +1,310 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Xperience1080 "2026" remake — Home (Tiles), the signature screen.
+   Self-contained window: does NOT use the legacy HomeItems / HomeCategoryLabels
+   mega-includes (kept in Includes_Home.xml for other windows / reference).
+
+   Main menu = script.skinshortcuts group "mainmenu" in fixedlist id=9000.
+   Per-hub content follows the focused menu item via
+   Container(9000).ListItem.Property(widget* / widgetPath* / widgetTarget* / widgetName*).
+
+   NOTE: skinshortcuts content binding can only be verified on-device (Kodi can't run
+   in this build env). Layout uses the new 2026 colour/font tokens and existing textures.
+   Effects (Ken Burns, glow) are gated behind Skin.HasSetting(MotionFX) for weak GPUs.
+-->
 <window>
-    <defaultcontrol>525</defaultcontrol>
-    <backgroundcolor>0</backgroundcolor>
+    <defaultcontrol always="true">9000</defaultcontrol>
+    <backgroundcolor>bg</backgroundcolor>
     <onload condition="!Skin.HasSetting(Skin.Initialization)">SetProperty(Skin.Initialization,1,startup)</onload>
     <onload condition="!Skin.HasSetting(Skin.Initialization) | String.IsEmpty(Window(startup).Property(Started))">ReplaceWindow(startup)</onload>
-    <include condition="!String.IsEmpty(Window.Property(CategoryChanged))">FocusSettingsCategory</include>
-
-    <onunload>SetProperty(HomeCategory,$INFO[Container(20).CurrentItem])</onunload>
 
     <controls>
-        <!-- Backgrounds -->
-        <include>CommonItemsHome</include>
-        <!-- Home screen -->
-        <include>HomeCategoryLabels</include>
-        <include>HomeItems</include>
-        <include>HomeProfileInfo</include>
-        <!-- Bottom buttons -->
-        <include condition="!Skin.HasSetting(HideHomeButtons)">HomeShutdownFavouritesButtons</include>
-        <!-- Common/profile info -->
-        <include>CommonHomeInfo</include>
+
+        <!-- ===================== Background + scrim ===================== -->
+        <control type="image">
+            <description>App background fill</description>
+            <left>0</left><top>0</top><width>1920</width><height>1080</height>
+            <texture>special://skin/media/windows/common/black.png</texture>
+            <colordiffuse>bg</colordiffuse>
+        </control>
+        <control type="image">
+            <description>Focused item fanart (content-aware)</description>
+            <left>0</left><top>0</top><width>1920</width><height>1080</height>
+            <aspectratio>scale</aspectratio>
+            <fadetime>400</fadetime>
+            <texture background="true" fallback="special://skin/media/windows/common/black.png">$INFO[Container(9100).ListItem.Art(fanart)]</texture>
+            <animation effect="zoom" start="100" end="112" center="1380,300" time="26000" condition="Skin.HasSetting(MotionFX)">Conditional</animation>
+        </control>
+        <control type="image">
+            <description>Left + bottom scrim</description>
+            <left>0</left><top>0</top><width>1920</width><height>1080</height>
+            <texture>special://skin/media/windows/common/black.png</texture>
+            <colordiffuse>scrimStrong</colordiffuse>
+        </control>
+
+        <!-- ===================== Top bar ===================== -->
+        <control type="group">
+            <left>64</left><top>34</top>
+            <!-- Profile chip -->
+            <control type="image">
+                <left>0</left><top>6</top><width>44</width><height>44</height>
+                <texture>DefaultUser.png</texture>
+                <colordiffuse>accent</colordiffuse>
+            </control>
+            <control type="label">
+                <left>56</left><top>0</top><width>360</width><height>56</height>
+                <font>Font-Menu-28</font>
+                <textcolor>text</textcolor>
+                <label>$LOCALIZE[32026]</label>
+                <align>left</align><aligny>center</aligny>
+            </control>
+        </control>
+
+        <!-- Main menu (skinshortcuts) -->
+        <control type="fixedlist" id="9000">
+            <left>520</left><top>34</top><width>1090</width><height>60</height>
+            <orientation>horizontal</orientation>
+            <focusposition>0</focusposition>
+            <movement>1</movement>
+            <scrolltime tween="sine" easing="out">200</scrolltime>
+            <pagecontrol>-1</pagecontrol>
+            <onup>9000</onup>
+            <ondown>9110</ondown>
+            <onright>9001</onright>
+            <itemlayout width="200" height="60">
+                <control type="label">
+                    <left>0</left><top>0</top><width>200</width><height>60</height>
+                    <font>Font-Menu-28</font>
+                    <textcolor>dim</textcolor>
+                    <label>$INFO[ListItem.Label]</label>
+                    <align>center</align><aligny>center</aligny>
+                </control>
+            </itemlayout>
+            <focusedlayout width="200" height="60">
+                <control type="label">
+                    <left>0</left><top>0</top><width>200</width><height>60</height>
+                    <font>Font-Menu-28</font>
+                    <textcolor>text</textcolor>
+                    <label>$INFO[ListItem.Label]</label>
+                    <align>center</align><aligny>center</aligny>
+                </control>
+                <control type="image">
+                    <description>active-item accent underline</description>
+                    <left>60</left><top>52</top><width>80</width><height>3</height>
+                    <texture>special://skin/media/windows/common/white.png</texture>
+                    <colordiffuse>accent</colordiffuse>
+                    <visible>Control.HasFocus(9000)</visible>
+                </control>
+            </focusedlayout>
+            <content>
+                <include content="skinshortcuts">
+                    <param name="group" value="mainmenu" />
+                </include>
+            </content>
+        </control>
+
+        <!-- Top-right icon buttons -->
+        <control type="button" id="9001">
+            <left>1664</left><top>40</top><width>48</width><height>48</height>
+            <texturefocus colordiffuse="accent">special://skin/media/windows/home/search.png</texturefocus>
+            <texturenofocus colordiffuse="dim">special://skin/media/windows/home/search.png</texturenofocus>
+            <onclick condition="System.HasAddon(script.globalsearch)">RunScript(script.globalsearch)</onclick>
+            <onleft>9000</onleft><onright>9002</onright><ondown>9110</ondown>
+        </control>
+        <control type="button" id="9002">
+            <left>1720</left><top>40</top><width>48</width><height>48</height>
+            <texturefocus colordiffuse="accent">special://skin/media/windows/home/icons/addtile.png</texturefocus>
+            <texturenofocus colordiffuse="dim">special://skin/media/windows/home/icons/addtile.png</texturenofocus>
+            <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
+            <onleft>9001</onleft><onright>9003</onright><ondown>9110</ondown>
+        </control>
+        <control type="button" id="9003">
+            <left>1776</left><top>40</top><width>48</width><height>48</height>
+            <texturefocus colordiffuse="accent">special://skin/media/windows/home/settings.png</texturefocus>
+            <texturenofocus colordiffuse="dim">special://skin/media/windows/home/settings.png</texturenofocus>
+            <onclick>ActivateWindow(skinsettings)</onclick>
+            <onleft>9002</onleft><onright>9003</onright><ondown>9110</ondown>
+        </control>
+
+        <!-- ===================== Hero row ===================== -->
+        <!-- Left column: 2 category tiles -->
+        <control type="button" id="9110">
+            <left>64</left><top>150</top><width>360</width><height>232</height>
+            <texturefocus border="2">special://skin/media/windows/home/tile-fo.png</texturefocus>
+            <texturenofocus>special://skin/media/windows/common/white.png</texturenofocus>
+            <colordiffuse>catMovies</colordiffuse>
+            <onclick>SendClick(9000)</onclick>
+            <onup>9000</onup><ondown>9111</ondown><onright>9100</onright>
+            <label>$INFO[Container(9000).ListItem.Label]</label>
+            <font>Font-Head-30</font>
+            <textcolor>text</textcolor>
+            <align>left</align><aligny>bottom</aligny>
+            <textoffsetx>24</textoffsetx><textoffsety>24</textoffsety>
+        </control>
+        <control type="button" id="9111">
+            <left>64</left><top>398</top><width>360</width><height>232</height>
+            <texturefocus border="2">special://skin/media/windows/home/tile-fo.png</texturefocus>
+            <texturenofocus>special://skin/media/windows/common/white.png</texturenofocus>
+            <colordiffuse>catAddons</colordiffuse>
+            <onclick>ActivateWindow(Videos,addons://sources/video/,return)</onclick>
+            <onup>9110</onup><ondown>9300</ondown><onright>9100</onright>
+            <label>$LOCALIZE[32005]</label>
+            <font>Font-Head-30</font>
+            <textcolor>text</textcolor>
+            <align>left</align><aligny>bottom</aligny>
+            <textoffsetx>24</textoffsetx><textoffsety>24</textoffsety>
+        </control>
+
+        <!-- Center: featured / now-spotlight (rotates through the hub's primary widget) -->
+        <control type="list" id="9100">
+            <left>446</left><top>150</top><width>1006</width><height>480</height>
+            <onleft>9110</onleft><onright>9201</onright><onup>9000</onup><ondown>9300</ondown>
+            <scrolltime tween="sine" easing="out">400</scrolltime>
+            <autoscroll time="6000" delay="6000" repeat="6000">Skin.HasSetting(MotionFX)</autoscroll>
+            <itemlayout width="1006" height="480">
+                <control type="image">
+                    <left>0</left><top>0</top><width>1006</width><height>480</height>
+                    <aspectratio>scale</aspectratio>
+                    <texture fallback="special://skin/media/windows/common/darkgrey.png">$INFO[ListItem.Art(fanart)]</texture>
+                </control>
+            </itemlayout>
+            <focusedlayout width="1006" height="480">
+                <control type="image">
+                    <left>0</left><top>0</top><width>1006</width><height>480</height>
+                    <aspectratio>scale</aspectratio>
+                    <texture fallback="special://skin/media/windows/common/darkgrey.png">$INFO[ListItem.Art(fanart)]</texture>
+                </control>
+                <control type="image">
+                    <left>0</left><top>0</top><width>1006</width><height>480</height>
+                    <texture>special://skin/media/windows/common/black.png</texture>
+                    <colordiffuse>scrim</colordiffuse>
+                </control>
+                <control type="image">
+                    <description>focus accent border</description>
+                    <left>0</left><top>0</top><width>1006</width><height>480</height>
+                    <texture border="2">special://skin/media/windows/home/tile-fo.png</texture>
+                    <visible>Control.HasFocus(9100)</visible>
+                </control>
+                <control type="label">
+                    <left>32</left><top>300</top><width>940</width><height>26</height>
+                    <font>Font-Label-18</font><textcolor>accent</textcolor>
+                    <label>$LOCALIZE[32020]</label>
+                </control>
+                <control type="label">
+                    <left>32</left><top>328</top><width>940</width><height>70</height>
+                    <font>Font-Title-58</font><textcolor>text</textcolor>
+                    <label>$INFO[ListItem.Label]</label>
+                </control>
+                <control type="label">
+                    <left>32</left><top>410</top><width>940</width><height>30</height>
+                    <font>Font-Meta-22</font><textcolor>dim</textcolor>
+                    <label>$INFO[ListItem.Year]  ·  $INFO[ListItem.Genre]</label>
+                </control>
+            </focusedlayout>
+            <content target="$INFO[Container(9000).ListItem.Property(widgetTarget)]" limit="10">$INFO[Container(9000).ListItem.Property(widgetPath)]</content>
+        </control>
+
+        <!-- Right column: 2 widget slots (hub's first two widgets) -->
+        <include content="HomeWidgetSlot2026">
+            <param name="id" value="9201" />
+            <param name="top" value="150" />
+            <param name="pathprop" value="widgetPath" />
+            <param name="nameprop" value="widgetName" />
+            <param name="targetprop" value="widgetTarget" />
+            <param name="onup" value="9000" />
+            <param name="ondown" value="9202" />
+        </include>
+        <include content="HomeWidgetSlot2026">
+            <param name="id" value="9202" />
+            <param name="top" value="398" />
+            <param name="pathprop" value="widgetPath.1" />
+            <param name="nameprop" value="widgetName.1" />
+            <param name="targetprop" value="widgetTarget.1" />
+            <param name="onup" value="9201" />
+            <param name="ondown" value="9300" />
+        </include>
+
+        <!-- ===================== Below: remaining widget row ===================== -->
+        <control type="grouplist" id="9300">
+            <left>64</left><top>662</top><width>1792</width><height>320</height>
+            <onup>9100</onup><ondown>9010</ondown>
+            <visible>!String.IsEmpty(Container(9000).ListItem.Property(widgetPath.2))</visible>
+            <control type="label">
+                <left>4</left><top>0</top><width>1792</width><height>34</height>
+                <font>Font-Head-26</font><textcolor>text</textcolor>
+                <label>$INFO[Container(9000).ListItem.Property(widgetName.2)]</label>
+            </control>
+            <control type="list" id="9301">
+                <left>0</left><top>40</top><width>1792</width><height>270</height>
+                <orientation>horizontal</orientation>
+                <itemgap>20</itemgap>
+                <onleft>9301</onleft><onright>9301</onright>
+                <scrolltime tween="sine" easing="out">300</scrolltime>
+                <itemlayout width="338" height="270">
+                    <control type="image">
+                        <left>0</left><top>0</top><width>338</width><height>270</height>
+                        <aspectratio>scale</aspectratio>
+                        <texture fallback="special://skin/media/windows/common/darkgrey.png">$INFO[ListItem.Art(poster)]</texture>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="338" height="270">
+                    <control type="image">
+                        <left>0</left><top>0</top><width>338</width><height>270</height>
+                        <aspectratio>scale</aspectratio>
+                        <texture fallback="special://skin/media/windows/common/darkgrey.png">$INFO[ListItem.Art(poster)]</texture>
+                    </control>
+                    <control type="image">
+                        <left>0</left><top>0</top><width>338</width><height>270</height>
+                        <texture border="2">special://skin/media/windows/home/tile-fo.png</texture>
+                        <visible>Control.HasFocus(9301)</visible>
+                    </control>
+                    <control type="label">
+                        <left>12</left><top>234</top><width>314</width><height>28</height>
+                        <font>Font-Body-19</font><textcolor>text</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </focusedlayout>
+                <content target="$INFO[Container(9000).ListItem.Property(widgetTarget.2)]" limit="12">$INFO[Container(9000).ListItem.Property(widgetPath.2)]</content>
+            </control>
+        </control>
+
+        <!-- ===================== Status bar ===================== -->
+        <control type="group">
+            <left>64</left><top>1006</top>
+            <control type="button" id="9010">
+                <left>0</left><top>0</top><width>210</width><height>48</height>
+                <texturefocus colordiffuse="accent" border="2">special://skin/media/windows/home/tile-fo.png</texturefocus>
+                <texturenofocus>-</texturenofocus>
+                <label>$LOCALIZE[32025]</label>
+                <font>Font-Body-19</font><textcolor>dim</textcolor>
+                <align>left</align><aligny>center</aligny><textoffsetx>12</textoffsetx>
+                <onclick>ActivateWindow(shutdownmenu)</onclick>
+                <onup>9300</onup><onright>9011</onright>
+            </control>
+            <control type="button" id="9011">
+                <left>222</left><top>0</top><width>210</width><height>48</height>
+                <texturefocus colordiffuse="accent" border="2">special://skin/media/windows/home/tile-fo.png</texturefocus>
+                <texturenofocus>-</texturenofocus>
+                <label>$LOCALIZE[32010]</label>
+                <font>Font-Body-19</font><textcolor>dim</textcolor>
+                <align>left</align><aligny>center</aligny><textoffsetx>12</textoffsetx>
+                <onclick>ActivateWindow(favourites)</onclick>
+                <onup>9300</onup><onleft>9010</onleft>
+            </control>
+            <control type="label">
+                <left>1300</left><top>0</top><width>360</width><height>48</height>
+                <font>Font-Body-19</font><textcolor>dim</textcolor>
+                <label>$INFO[System.Date]  ·  $INFO[System.Time]</label>
+                <align>right</align><aligny>center</aligny>
+            </control>
+            <control type="label">
+                <left>1680</left><top>0</top><width>112</width><height>48</height>
+                <font>Font-Body-19</font><textcolor>dim</textcolor>
+                <label>$INFO[Weather.Temperature]</label>
+                <align>right</align><aligny>center</aligny>
+                <visible>!String.IsEmpty(Weather.Temperature)</visible>
+            </control>
+        </control>
+
     </controls>
 </window>

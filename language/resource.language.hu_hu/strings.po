@@ -575,3 +575,73 @@ msgstr "Vörös"
 msgctxt "#31996"
 msgid "Hide Date"
 msgstr "Dátum Elrejtése"
+
+#. ============ 2026 remake — főmenü hubok ============
+msgctxt "#32001"
+msgid "Home"
+msgstr "Kezdőlap"
+
+msgctxt "#32002"
+msgid "Movies"
+msgstr "Filmek"
+
+msgctxt "#32003"
+msgid "TV Shows"
+msgstr "Sorozatok"
+
+msgctxt "#32004"
+msgid "Live TV"
+msgstr "Élő TV"
+
+msgctxt "#32005"
+msgid "Add-ons"
+msgstr "Kiegészítők"
+
+msgctxt "#32006"
+msgid "Music"
+msgstr "Zene"
+
+msgctxt "#32007"
+msgid "Pictures"
+msgstr "Képek"
+
+msgctxt "#32008"
+msgid "Programs"
+msgstr "Alkalmazások"
+
+msgctxt "#32009"
+msgid "Weather"
+msgstr "Időjárás"
+
+msgctxt "#32010"
+msgid "Favourites"
+msgstr "Kedvencek"
+
+#. ============ 2026 remake — kezdőlap UI ============
+msgctxt "#32020"
+msgid "Featured"
+msgstr "Kiemelt"
+
+msgctxt "#32021"
+msgid "Widget"
+msgstr "Widget"
+
+msgctxt "#32022"
+msgid "Manage widgets"
+msgstr "Widgetek kezelése"
+
+msgctxt "#32023"
+msgid "Edit menu"
+msgstr "Főmenü szerkesztése"
+
+msgctxt "#32024"
+msgid "items"
+msgstr "elem"
+
+msgctxt "#32025"
+msgid "Power"
+msgstr "Bekapcsolás"
+
+msgctxt "#32026"
+msgid "Master user"
+msgstr "Master user"

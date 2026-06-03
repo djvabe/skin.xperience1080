@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Xperience1080 "2026" remake — includes used by the new Home (Tiles) window.
+   HomeWidgetSlot2026: one right-column widget slot. Shows the hub widget's name +
+   item count over the first item's artwork; an empty slot shows "+ Widget".
+   Bound to the focused main-menu item's widget properties (per-hub).
+-->
+<includes>
+
+    <include name="HomeWidgetSlot2026">
+        <param name="id" default="9201" />
+        <param name="top" default="150" />
+        <param name="pathprop" default="widgetPath" />
+        <param name="nameprop" default="widgetName" />
+        <param name="targetprop" default="widgetTarget" />
+        <param name="onup" default="9000" />
+        <param name="ondown" default="9300" />
+        <definition>
+            <control type="group">
+                <left>1474</left>
+                <top>$PARAM[top]</top>
+                <width>382</width>
+                <height>232</height>
+
+                <!-- focusable tile bound to the widget folder (first item shown) -->
+                <control type="list" id="$PARAM[id]">
+                    <left>0</left><top>0</top><width>382</width><height>232</height>
+                    <focusposition>0</focusposition>
+                    <onup>$PARAM[onup]</onup>
+                    <ondown>$PARAM[ondown]</ondown>
+                    <onleft>9100</onleft>
+                    <onright>$PARAM[id]</onright>
+                    <itemlayout width="382" height="232">
+                        <control type="image">
+                            <left>0</left><top>0</top><width>382</width><height>232</height>
+                            <aspectratio>scale</aspectratio>
+                            <texture fallback="special://skin/media/windows/common/darkgrey.png">$INFO[ListItem.Art(thumb)]</texture>
+                        </control>
+                        <control type="image">
+                            <left>0</left><top>0</top><width>382</width><height>232</height>
+                            <texture>special://skin/media/windows/common/black.png</texture>
+                            <colordiffuse>scrim</colordiffuse>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout width="382" height="232">
+                        <control type="image">
+                            <left>0</left><top>0</top><width>382</width><height>232</height>
+                            <aspectratio>scale</aspectratio>
+                            <texture fallback="special://skin/media/windows/common/darkgrey.png">$INFO[ListItem.Art(thumb)]</texture>
+                        </control>
+                        <control type="image">
+                            <left>0</left><top>0</top><width>382</width><height>232</height>
+                            <texture>special://skin/media/windows/common/black.png</texture>
+                            <colordiffuse>scrim</colordiffuse>
+                        </control>
+                        <control type="image">
+                            <left>0</left><top>0</top><width>382</width><height>232</height>
+                            <texture border="2">special://skin/media/windows/home/tile-fo.png</texture>
+                            <visible>Control.HasFocus($PARAM[id])</visible>
+                        </control>
+                    </focusedlayout>
+                    <content target="$INFO[Container(9000).ListItem.Property($PARAM[targetprop])]" limit="1">$INFO[Container(9000).ListItem.Property($PARAM[pathprop])]</content>
+                </control>
+
+                <!-- widget name + item count overlay -->
+                <control type="label">
+                    <left>16</left><top>166</top><width>350</width><height>30</height>
+                    <font>Font-Label-18</font>
+                    <textcolor>text</textcolor>
+                    <label>$INFO[Container(9000).ListItem.Property($PARAM[nameprop])]</label>
+                    <visible>!String.IsEmpty(Container(9000).ListItem.Property($PARAM[pathprop]))</visible>
+                </control>
+                <control type="label">
+                    <left>16</left><top>196</top><width>350</width><height>26</height>
+                    <font>Font-Body-17</font>
+                    <textcolor>dim</textcolor>
+                    <label>$INFO[Container($PARAM[id]).NumItems] $LOCALIZE[32024]</label>
+                    <visible>!String.IsEmpty(Container(9000).ListItem.Property($PARAM[pathprop]))</visible>
+                </control>
+
+                <!-- empty slot -->
+                <control type="label">
+                    <left>0</left><top>96</top><width>382</width><height>40</height>
+                    <font>Font-Label-18</font>
+                    <textcolor>faint</textcolor>
+                    <label>+ $LOCALIZE[32021]</label>
+                    <align>center</align>
+                    <visible>String.IsEmpty(Container(9000).ListItem.Property($PARAM[pathprop]))</visible>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+</includes>
