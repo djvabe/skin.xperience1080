@@ -4,6 +4,7 @@
     <backgroundcolor>0</backgroundcolor>
     <onload condition="String.IsEmpty(Skin.String(music.name))">Skin.SetString(music.name,$LOCALIZE[14022])</onload>
     <onload condition="String.IsEmpty(Skin.String(rss.setting))">Skin.SetString(rss.setting,$LOCALIZE[1223])</onload>
+    <onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000)</onunload>
     <controls>
         <include>CommonSettingsItems</include>
         <include>SettingsHeader</include>

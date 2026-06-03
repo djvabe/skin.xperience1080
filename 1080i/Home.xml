@@ -15,6 +15,7 @@
 <window>
     <defaultcontrol always="true">9000</defaultcontrol>
     <backgroundcolor>bg</backgroundcolor>
+    <onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000)</onload>
     <onload condition="!Skin.HasSetting(Skin.Initialization)">SetProperty(Skin.Initialization,1,startup)</onload>
     <onload condition="!Skin.HasSetting(Skin.Initialization) | String.IsEmpty(Window(startup).Property(Started))">ReplaceWindow(startup)</onload>
 
@@ -96,11 +97,7 @@
                     <visible>Control.HasFocus(9000)</visible>
                 </control>
             </focusedlayout>
-            <content>
-                <include content="skinshortcuts">
-                    <param name="group" value="mainmenu" />
-                </include>
-            </content>
+            <content><include>skinshortcuts-mainmenu</include></content>
         </control>
 
         <!-- Top-right icon buttons -->
