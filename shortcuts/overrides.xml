@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-   Xperience1080 "2026" remake — script.skinshortcuts overrides / catalogue.
-   Declares the main-menu group and the set of widgets the user can attach to any
-   hub from the manage dialog (RunScript(script.skinshortcuts,type=manage&group=mainmenu)).
-   Widget <label> uses Kodi core string ids so the picker is auto-localized.
-   Default widgets target the LOCAL library / PVR for universal out-of-the-box content;
-   users can repoint a slot to add-on folders (Jellyfin, IPTV, YouTube, ...) themselves.
+   Xperience1080 "2026" remake — script.skinshortcuts overrides.
+   Kept minimal: the menu is seeded from mainmenu.DATA.xml and per-hub widget content
+   is provided by the skin (defaultID-keyed Widget2026.* variables in Includes_Home2026.xml),
+   so no widget/background catalogue is needed here. This file simply exists so the script
+   has a valid (empty) overrides set for the skin.
 -->
 <overrides>
-
-    <groupoverrides>
-        <group name="mainmenu" />
-    </groupoverrides>
-
-    <widgets>
-        <widget label="20386" type="movie"   path="videodb://recentlyaddedmovies/"   target="videos">RecentMovies</widget>
-        <widget label="342"   type="movie"   path="videodb://movies/titles/"          target="videos">AllMovies</widget>
-        <widget label="20387" type="episode" path="videodb://recentlyaddedepisodes/"  target="videos">RecentEpisodes</widget>
-        <widget label="626"   type="episode" path="videodb://inprogresstvshows/"      target="videos">InProgress</widget>
-        <widget label="20343" type="tvshow"  path="videodb://tvshows/titles/"         target="videos">AllTVShows</widget>
-        <widget label="19019" type="pvr"     path="pvr://channels/tv/*"               target="pvr">PVRChannels</widget>
-        <widget label="1037"  type="addon"   path="addons://sources/video/"           target="videos">VideoAddons</widget>
-        <widget label="10005" type="album"   path="musicdb://recentlyaddedalbums/"    target="music">RecentAlbums</widget>
-        <widget label="132"   type="artist"  path="musicdb://artists/"                target="music">AllArtists</widget>
-        <widget label="997"   type="picture" path="sources://pictures/"               target="pictures">Pictures</widget>
-    </widgets>
-
 </overrides>

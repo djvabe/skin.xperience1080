@@ -1,18 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-   Xperience1080 "2026" remake — includes used by the new Home (Tiles) window.
-   HomeWidgetSlot2026: one right-column widget slot. Shows the hub widget's name +
-   item count over the first item's artwork; an empty slot shows "+ Widget".
-   Bound to the focused main-menu item's widget properties (per-hub).
+   Xperience1080 "2026" remake — includes for the new Home (Tiles) window.
+
+   Per-hub widget content is driven by the focused main-menu item's defaultID
+   (Container(9000).ListItem.Property(defaultID)) via the Widget2026.* variables below.
+   This is language-independent and survives script.skinshortcuts' buildxml regeneration
+   (it does not rely on skinshortcuts widget properties). Three widget slots per hub:
+   primary (featured centre), .1 (right slot 1), .2 (right slot 2).
 -->
 <includes>
 
+    <!-- ============ per-hub widget PATHS ============ -->
+    <variable name="Widget2026.Path">
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),home)">videodb://recentlyaddedmovies/</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),movies)">videodb://recentlyaddedmovies/</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),series)">videodb://recentlyaddedepisodes/</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),live)">pvr://channels/tv/*</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),addons)">addons://sources/video/</value>
+        <value>videodb://recentlyaddedmovies/</value>
+    </variable>
+    <variable name="Widget2026.Path1">
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),home)">videodb://inprogresstvshows/</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),movies)">videodb://movies/titles/</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),series)">videodb://tvshows/titles/</value>
+        <value></value>
+    </variable>
+    <variable name="Widget2026.Path2">
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),home)">videodb://recentlyaddedepisodes/</value>
+        <value></value>
+    </variable>
+
+    <!-- ============ per-hub widget TARGETS ============ -->
+    <variable name="Widget2026.Target">
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),live)">pvr</value>
+        <value>videos</value>
+    </variable>
+
+    <!-- ============ per-hub widget NAMES ============ -->
+    <variable name="Widget2026.Name">
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),home)">$LOCALIZE[20386]</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),movies)">$LOCALIZE[20386]</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),series)">$LOCALIZE[20387]</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),live)">$LOCALIZE[19019]</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),addons)">$LOCALIZE[1037]</value>
+        <value>$LOCALIZE[20386]</value>
+    </variable>
+    <variable name="Widget2026.Name1">
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),home)">$LOCALIZE[626]</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),movies)">$LOCALIZE[342]</value>
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),series)">$LOCALIZE[20343]</value>
+        <value></value>
+    </variable>
+    <variable name="Widget2026.Name2">
+        <value condition="String.IsEqual(Container(9000).ListItem.Property(defaultID),home)">$LOCALIZE[20387]</value>
+        <value></value>
+    </variable>
+
+    <!-- ============ right-column widget slot ============ -->
     <include name="HomeWidgetSlot2026">
         <param name="id" default="9201" />
         <param name="top" default="150" />
-        <param name="pathprop" default="widgetPath" />
-        <param name="nameprop" default="widgetName" />
-        <param name="targetprop" default="widgetTarget" />
+        <param name="pathvar" default="Widget2026.Path1" />
+        <param name="namevar" default="Widget2026.Name1" />
         <param name="onup" default="9000" />
         <param name="ondown" default="9300" />
         <definition>
@@ -22,7 +71,6 @@
                 <width>382</width>
                 <height>232</height>
 
-                <!-- focusable tile bound to the widget folder (first item shown) -->
                 <control type="list" id="$PARAM[id]">
                     <left>0</left><top>0</top><width>382</width><height>232</height>
                     <focusposition>0</focusposition>
@@ -59,33 +107,31 @@
                             <visible>Control.HasFocus($PARAM[id])</visible>
                         </control>
                     </focusedlayout>
-                    <content target="$INFO[Container(9000).ListItem.Property($PARAM[targetprop])]" limit="1">$INFO[Container(9000).ListItem.Property($PARAM[pathprop])]</content>
+                    <content target="$VAR[Widget2026.Target]" limit="1">$VAR[$PARAM[pathvar]]</content>
                 </control>
 
-                <!-- widget name + item count overlay -->
                 <control type="label">
                     <left>16</left><top>166</top><width>350</width><height>30</height>
                     <font>Font-Label-18</font>
                     <textcolor>text</textcolor>
-                    <label>$INFO[Container(9000).ListItem.Property($PARAM[nameprop])]</label>
-                    <visible>!String.IsEmpty(Container(9000).ListItem.Property($PARAM[pathprop]))</visible>
+                    <label>$VAR[$PARAM[namevar]]</label>
+                    <visible>!String.IsEmpty($VAR[$PARAM[pathvar]])</visible>
                 </control>
                 <control type="label">
                     <left>16</left><top>196</top><width>350</width><height>26</height>
                     <font>Font-Body-17</font>
                     <textcolor>dim</textcolor>
                     <label>$INFO[Container($PARAM[id]).NumItems] $LOCALIZE[32024]</label>
-                    <visible>!String.IsEmpty(Container(9000).ListItem.Property($PARAM[pathprop]))</visible>
+                    <visible>!String.IsEmpty($VAR[$PARAM[pathvar]])</visible>
                 </control>
 
-                <!-- empty slot -->
                 <control type="label">
                     <left>0</left><top>96</top><width>382</width><height>40</height>
                     <font>Font-Label-18</font>
                     <textcolor>faint</textcolor>
                     <label>+ $LOCALIZE[32021]</label>
                     <align>center</align>
-                    <visible>String.IsEmpty(Container(9000).ListItem.Property($PARAM[pathprop]))</visible>
+                    <visible>String.IsEmpty($VAR[$PARAM[pathvar]])</visible>
                 </control>
             </control>
         </definition>

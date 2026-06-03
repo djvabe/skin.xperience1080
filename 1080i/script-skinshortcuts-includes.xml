@@ -1,90 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-   SEED of the script.skinshortcuts generated includes.
-   script.skinshortcuts OVERWRITES this file on first Home load (type=buildxml),
-   rebuilding it from the user's (shared) menu seeded by shortcuts/mainmenu.DATA.xml.
-   Shipping this seed makes the main menu render immediately on first launch
-   (without it, the menu only appears after a skin reload). The <item> set mirrors
-   shortcuts/mainmenu.DATA.xml so the hero/widgets bind correctly out of the box.
+   SEED of the script.skinshortcuts generated menu include.
+   script.skinshortcuts OVERWRITES this on first Home load (type=buildxml), rebuilding
+   it from the user's menu (seeded by shortcuts/mainmenu.DATA.xml). Shipping this seed
+   makes the menu render immediately on first launch. Items expose the defaultID
+   property; per-hub widget content is bound in the skin via defaultID-keyed variables
+   (Includes_Home2026.xml), so it works both before and after buildxml.
 -->
 <includes>
     <include name="skinshortcuts-mainmenu">
-
         <item>
             <label>$LOCALIZE[32001]</label>
             <icon>special://skin/media/windows/home/icons/appearance.png</icon>
             <onclick>ActivateWindow(Home)</onclick>
             <property name="defaultID">home</property>
-            <property name="widget">RecentMovies</property>
-            <property name="widgetName">$LOCALIZE[20386]</property>
-            <property name="widgetType">movie</property>
-            <property name="widgetTarget">videos</property>
-            <property name="widgetPath">videodb://recentlyaddedmovies/</property>
-            <property name="widgetName.1">$LOCALIZE[626]</property>
-            <property name="widgetType.1">episode</property>
-            <property name="widgetTarget.1">videos</property>
-            <property name="widgetPath.1">videodb://inprogresstvshows/</property>
-            <property name="widgetName.2">$LOCALIZE[20387]</property>
-            <property name="widgetType.2">episode</property>
-            <property name="widgetTarget.2">videos</property>
-            <property name="widgetPath.2">videodb://recentlyaddedepisodes/</property>
+            <property name="labelID">home</property>
         </item>
-
         <item>
             <label>$LOCALIZE[32002]</label>
             <icon>special://skin/media/windows/home/icons/video.png</icon>
             <onclick>ActivateWindow(Videos,videodb://movies/titles/,return)</onclick>
             <property name="defaultID">movies</property>
-            <property name="widget">RecentMovies</property>
-            <property name="widgetName">$LOCALIZE[20386]</property>
-            <property name="widgetType">movie</property>
-            <property name="widgetTarget">videos</property>
-            <property name="widgetPath">videodb://recentlyaddedmovies/</property>
-            <property name="widgetName.1">$LOCALIZE[342]</property>
-            <property name="widgetType.1">movie</property>
-            <property name="widgetTarget.1">videos</property>
-            <property name="widgetPath.1">videodb://movies/titles/</property>
+            <property name="labelID">movies</property>
         </item>
-
         <item>
             <label>$LOCALIZE[32003]</label>
             <icon>special://skin/media/windows/home/icons/tvshows.png</icon>
             <onclick>ActivateWindow(Videos,videodb://tvshows/titles/,return)</onclick>
             <property name="defaultID">series</property>
-            <property name="widget">RecentEpisodes</property>
-            <property name="widgetName">$LOCALIZE[20387]</property>
-            <property name="widgetType">episode</property>
-            <property name="widgetTarget">videos</property>
-            <property name="widgetPath">videodb://recentlyaddedepisodes/</property>
-            <property name="widgetName.1">$LOCALIZE[20343]</property>
-            <property name="widgetType.1">tvshow</property>
-            <property name="widgetTarget.1">videos</property>
-            <property name="widgetPath.1">videodb://tvshows/titles/</property>
+            <property name="labelID">series</property>
         </item>
-
         <item>
             <label>$LOCALIZE[32004]</label>
             <icon>special://skin/media/windows/home/icons/epg.png</icon>
             <onclick>ActivateWindow(TVChannels)</onclick>
             <property name="defaultID">live</property>
-            <property name="widget">PVRChannels</property>
-            <property name="widgetName">$LOCALIZE[19019]</property>
-            <property name="widgetType">pvr</property>
-            <property name="widgetTarget">pvr</property>
-            <property name="widgetPath">pvr://channels/tv/*</property>
+            <property name="labelID">live</property>
         </item>
-
         <item>
             <label>$LOCALIZE[32005]</label>
             <icon>special://skin/media/windows/home/icons/addons.png</icon>
             <onclick>ActivateWindow(Videos,addons://sources/video/,return)</onclick>
             <property name="defaultID">addons</property>
-            <property name="widget">VideoAddons</property>
-            <property name="widgetName">$LOCALIZE[1037]</property>
-            <property name="widgetType">addon</property>
-            <property name="widgetTarget">videos</property>
-            <property name="widgetPath">addons://sources/video/</property>
+            <property name="labelID">addons</property>
         </item>
-
     </include>
 </includes>

@@ -119,7 +119,7 @@
             <left>1776</left><top>40</top><width>48</width><height>48</height>
             <texturefocus colordiffuse="accent">special://skin/media/windows/home/settings.png</texturefocus>
             <texturenofocus colordiffuse="dim">special://skin/media/windows/home/settings.png</texturenofocus>
-            <onclick>ActivateWindow(skinsettings)</onclick>
+            <onclick>ActivateWindow(Settings)</onclick>
             <onleft>9002</onleft><onright>9003</onright><ondown>9110</ondown>
         </control>
 
@@ -144,7 +144,7 @@
             <texturenofocus>special://skin/media/windows/common/white.png</texturenofocus>
             <colordiffuse>catAddons</colordiffuse>
             <onclick>ActivateWindow(Videos,addons://sources/video/,return)</onclick>
-            <onup>9110</onup><ondown>9300</ondown><onright>9100</onright>
+            <onup>9110</onup><ondown>9010</ondown><onright>9100</onright>
             <label>$LOCALIZE[32005]</label>
             <font>Font-Head-30</font>
             <textcolor>text</textcolor>
@@ -155,7 +155,7 @@
         <!-- Center: featured / now-spotlight (rotates through the hub's primary widget) -->
         <control type="list" id="9100">
             <left>446</left><top>150</top><width>1006</width><height>480</height>
-            <onleft>9110</onleft><onright>9201</onright><onup>9000</onup><ondown>9300</ondown>
+            <onleft>9110</onleft><onright>9201</onright><onup>9000</onup><ondown>9010</ondown>
             <scrolltime tween="sine" easing="out">400</scrolltime>
             <autoscroll time="6000" delay="6000" repeat="6000">Skin.HasSetting(MotionFX)</autoscroll>
             <itemlayout width="1006" height="480">
@@ -198,72 +198,26 @@
                     <label>$INFO[ListItem.Year]  ·  $INFO[ListItem.Genre]</label>
                 </control>
             </focusedlayout>
-            <content target="$INFO[Container(9000).ListItem.Property(widgetTarget)]" limit="10">$INFO[Container(9000).ListItem.Property(widgetPath)]</content>
+            <content target="$VAR[Widget2026.Target]" limit="10">$VAR[Widget2026.Path]</content>
         </control>
 
-        <!-- Right column: 2 widget slots (hub's first two widgets) -->
+        <!-- Right column: 2 widget slots (hub widgets .1 and .2) -->
         <include content="HomeWidgetSlot2026">
             <param name="id" value="9201" />
             <param name="top" value="150" />
-            <param name="pathprop" value="widgetPath" />
-            <param name="nameprop" value="widgetName" />
-            <param name="targetprop" value="widgetTarget" />
+            <param name="pathvar" value="Widget2026.Path1" />
+            <param name="namevar" value="Widget2026.Name1" />
             <param name="onup" value="9000" />
             <param name="ondown" value="9202" />
         </include>
         <include content="HomeWidgetSlot2026">
             <param name="id" value="9202" />
             <param name="top" value="398" />
-            <param name="pathprop" value="widgetPath.1" />
-            <param name="nameprop" value="widgetName.1" />
-            <param name="targetprop" value="widgetTarget.1" />
+            <param name="pathvar" value="Widget2026.Path2" />
+            <param name="namevar" value="Widget2026.Name2" />
             <param name="onup" value="9201" />
-            <param name="ondown" value="9300" />
+            <param name="ondown" value="9010" />
         </include>
-
-        <!-- ===================== Below: remaining widget row ===================== -->
-        <control type="grouplist" id="9300">
-            <left>64</left><top>662</top><width>1792</width><height>320</height>
-            <onup>9100</onup><ondown>9010</ondown>
-            <visible>!String.IsEmpty(Container(9000).ListItem.Property(widgetPath.2))</visible>
-            <control type="label">
-                <left>4</left><top>0</top><width>1792</width><height>34</height>
-                <font>Font-Head-26</font><textcolor>text</textcolor>
-                <label>$INFO[Container(9000).ListItem.Property(widgetName.2)]</label>
-            </control>
-            <control type="list" id="9301">
-                <left>0</left><top>40</top><width>1792</width><height>270</height>
-                <orientation>horizontal</orientation>
-                <itemgap>20</itemgap>
-                <onleft>9301</onleft><onright>9301</onright>
-                <scrolltime tween="sine" easing="out">300</scrolltime>
-                <itemlayout width="338" height="270">
-                    <control type="image">
-                        <left>0</left><top>0</top><width>338</width><height>270</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture fallback="special://skin/media/windows/common/darkgrey.png">$INFO[ListItem.Art(poster)]</texture>
-                    </control>
-                </itemlayout>
-                <focusedlayout width="338" height="270">
-                    <control type="image">
-                        <left>0</left><top>0</top><width>338</width><height>270</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture fallback="special://skin/media/windows/common/darkgrey.png">$INFO[ListItem.Art(poster)]</texture>
-                    </control>
-                    <control type="image">
-                        <left>0</left><top>0</top><width>338</width><height>270</height>
-                        <texture border="2">special://skin/media/windows/home/tile-fo.png</texture>
-                        <visible>Control.HasFocus(9301)</visible>
-                    </control>
-                    <control type="label">
-                        <left>12</left><top>234</top><width>314</width><height>28</height>
-                        <font>Font-Body-19</font><textcolor>text</textcolor>
-                        <label>$INFO[ListItem.Label]</label>
-                    </control>
-                </focusedlayout>
-                <content target="$INFO[Container(9000).ListItem.Property(widgetTarget.2)]" limit="12">$INFO[Container(9000).ListItem.Property(widgetPath.2)]</content>
-            </control>
-        </control>
 
         <!-- ===================== Status bar ===================== -->
         <control type="group">
@@ -276,7 +230,7 @@
                 <font>Font-Body-19</font><textcolor>dim</textcolor>
                 <align>left</align><aligny>center</aligny><textoffsetx>12</textoffsetx>
                 <onclick>ActivateWindow(shutdownmenu)</onclick>
-                <onup>9300</onup><onright>9011</onright>
+                <onup>9100</onup><onright>9011</onright>
             </control>
             <control type="button" id="9011">
                 <left>222</left><top>0</top><width>210</width><height>48</height>
@@ -286,7 +240,7 @@
                 <font>Font-Body-19</font><textcolor>dim</textcolor>
                 <align>left</align><aligny>center</aligny><textoffsetx>12</textoffsetx>
                 <onclick>ActivateWindow(favourites)</onclick>
-                <onup>9300</onup><onleft>9010</onleft>
+                <onup>9100</onup><onleft>9010</onleft>
             </control>
             <control type="label">
                 <left>1300</left><top>0</top><width>360</width><height>48</height>

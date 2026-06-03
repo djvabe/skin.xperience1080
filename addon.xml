@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="skin.xperience1080" version="11.0.1" name="Xperience1080" provider-name="xhaggi, djvabe">
+<addon id="skin.xperience1080" version="11.0.2" name="Xperience1080" provider-name="xhaggi, djvabe">
     <requires>
         <import addon="xbmc.gui" version="5.17.0" />
         <import addon="script.skinshortcuts" version="2.0.3" />
