@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-   Xperience1080 "2026" remake — default colour theme (Blue accent).
+   Xperience1080 "2026" remake — colour theme (Emerald accent).
    Existing colour NAMES are preserved so the 122 legacy windows keep working;
    accent-tinted names are re-pointed to the new design accent (#5BA8FF).
    New 2026 design tokens are added at the bottom (bg/text/glass/category/brand/accent).
@@ -21,21 +21,21 @@
         <color name="lightgrey">FFDDDDDD</color>
 
         <!-- Accent-tinted legacy names re-pointed to the 2026 accent (#5BA8FF) -->
-        <color name="blue">FF5BA8FF</color>
+        <color name="blue">FF4FD0A0</color>
         <color name="homelabelbig">FFF5F6F8</color>
-        <color name="homelabelsmall">FF5BA8FF</color>
+        <color name="homelabelsmall">FF4FD0A0</color>
         <color name="greyblue">FF7B8089</color>
         <color name="listwhite">FFF5F6F8</color>
-        <color name="guideblue">FF5BA8FF</color>
-        <color name="guidebutton">FF5BA8FF</color>
-        <color name="MenuBlue">FF5BA8FF</color>
+        <color name="guideblue">FF4FD0A0</color>
+        <color name="guidebutton">FF4FD0A0</color>
+        <color name="MenuBlue">FF4FD0A0</color>
         <color name="MenuGrey">CC1A1D24</color>
         <color name="KeyboardGrey">991A1D24</color>
-        <color name="SettingsBlue">FF5BA8FF</color>
-        <color name="DialogSelected">FF5BA8FF</color>
+        <color name="SettingsBlue">FF4FD0A0</color>
+        <color name="DialogSelected">FF4FD0A0</color>
         <color name="SelectedRed">FFE10101</color>
-        <color name="SelectedColor">FF5BA8FF</color>
-        <color name="SelectedBlue">FF5BA8FF</color>
+        <color name="SelectedColor">FF4FD0A0</color>
+        <color name="SelectedBlue">FF4FD0A0</color>
 
         <!-- White alpha ramp (legacy) -->
         <color name="77white">77FFFFFF</color>
@@ -64,10 +64,10 @@
         <color name="glassLo">0AFFFFFF</color>
 
         <!-- Accent (default = blue). Accent variants override these in sibling files. -->
-        <color name="accent">FF5BA8FF</color>
-        <color name="accentDim">B35BA8FF</color>
-        <color name="accentGlow">665BA8FF</color>
-        <color name="onaccent">FF06121F</color>
+        <color name="accent">FF4FD0A0</color>
+        <color name="accentDim">B34FD0A0</color>
+        <color name="accentGlow">664FD0A0</color>
+        <color name="onaccent">FF06140E</color>
 
         <!-- Category tile colours -->
         <color name="catMovies">FF2F6DB0</color>

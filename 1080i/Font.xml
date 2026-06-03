@@ -337,5 +337,33 @@
             <filename>Roboto-Bold.ttf</filename>
             <size>120</size>
         </font>
+
+        <!-- ===================== 2026 design fonts ===================== -->
+        <!-- Display / titles / menu = Sora ; Body / metadata = Manrope.
+             Sizes are in the 1080 coordinate space (10-foot scale). -->
+        <font><name>Font-Title-92</name><filename>Sora-ExtraBold.ttf</filename><size>92</size></font>
+        <font><name>Font-Title-72</name><filename>Sora-Bold.ttf</filename><size>72</size></font>
+        <font><name>Font-Title-58</name><filename>Sora-Bold.ttf</filename><size>58</size></font>
+        <font><name>Font-Title-40</name><filename>Sora-SemiBold.ttf</filename><size>40</size></font>
+        <font><name>Font-Head-30</name><filename>Sora-SemiBold.ttf</filename><size>30</size></font>
+        <font><name>Font-Head-26</name><filename>Sora-SemiBold.ttf</filename><size>26</size></font>
+
+        <!-- Menu (Sora) -->
+        <font><name>Font-Menu-32</name><filename>Sora-SemiBold.ttf</filename><size>32</size></font>
+        <font><name>Font-Menu-28</name><filename>Sora-SemiBold.ttf</filename><size>28</size></font>
+
+        <!-- Counts / numbers (Sora) -->
+        <font><name>Font-Count-40</name><filename>Sora-Bold.ttf</filename><size>40</size></font>
+        <font><name>Font-Count-26</name><filename>Sora-SemiBold.ttf</filename><size>26</size></font>
+
+        <!-- Body / metadata (Manrope) -->
+        <font><name>Font-Body-22</name><filename>Manrope-Regular.ttf</filename><size>22</size></font>
+        <font><name>Font-Body-19</name><filename>Manrope-Regular.ttf</filename><size>19</size></font>
+        <font><name>Font-Body-17</name><filename>Manrope-Regular.ttf</filename><size>17</size></font>
+        <font><name>Font-Meta-22</name><filename>Manrope-Medium.ttf</filename><size>22</size></font>
+        <font><name>Font-Meta-19</name><filename>Manrope-Medium.ttf</filename><size>19</size></font>
+        <font><name>Font-Label-18</name><filename>Manrope-SemiBold.ttf</filename><size>18</size></font>
+        <font><name>Font-Label-17</name><filename>Manrope-SemiBold.ttf</filename><size>17</size></font>
+        <font><name>Font-Label-24</name><filename>Manrope-SemiBold.ttf</filename><size>24</size></font>
     </fontset>
 </fonts>
